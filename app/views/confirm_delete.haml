@@ -1,0 +1,12 @@
+.container
+  %h3
+    Are you sure you want to delete this Drill?
+    
+  %form.form-inline#edit{:action=>"/task/#{@task.id}/delete", :method=>"post", :role=>"form"}   
+    %input{:type=>"hidden", :name=>"_method", :value=>"delete"}
+    %div#sketx-canvas{:width=>600}      
+      %img{:src=>"#{@task.name}"}
+    %input.btn.btn-primary{:type=>"submit", :value=>"Delete"}  
+    or 
+    %a{:href=>"/"}Cancel
+  

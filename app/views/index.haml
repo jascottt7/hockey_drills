@@ -1,0 +1,36 @@
+.container
+  .ng-view{:'data-ng-view'=>""}
+    %h1 
+      Add A New Drill
+    %canvas#sketx-canvas{:width=>"800", :height=>"407"}
+    %br
+    %a{:href=>"#", :onclick=>"pencil.activate();"}Pencil
+    %a{:href=>"#", :onclick=>"pattern1.activate();"}Backwards
+    %a{:href=>"#", :onclick=>"forward.activate();"}Forward
+    %a{:href=>"#", :onclick=>"straight.activate();"}Straight
+    %a{:href=>"#", :onclick=>"pass.activate();"}Pass
+    %a{:href=>"#", :onclick=>"shoot.activate();"}Shoot
+    %a{:href=>"#", :onclick=>"stickhandle.activate();"}Stickhandle
+    
+    %a{:href=>"#", :onclick=>"select_tool.activate();"}Select
+    %a{:href=>"#", :onclick=>"remove_tool.activate();"}Remove    
+    %input{:id=>"reset", :type=>"button", :value=>"Reset"}
+    %input{:id=>"upload", :type=>"button", :value=>"Upload"}
+    %form.form-inline#edit{:action=>"/task/create", :method=>"post", :role=>"form"}   
+      %input{:type=>"textbox", :name=>"name", :id=>"name"}
+      %input.btn.btn-primary{:type=>"submit", :value=>"Add Drill!"}
+  %h2 Drills:
+  - unless @tasks.empty?
+    %ul
+      - @tasks.each do |task|
+        %a{:href=>"/task/#{task.id}/view"}  
+          %div#thumbhockey{:width=>250}     
+            %img{:src=>task.name, :width=>250}
+        %li
+          - if task.completed?
+            %strike
+              = task.link
+          - else
+            = task.link
+  - else
+    %p No Tasks!

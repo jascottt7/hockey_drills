@@ -1,0 +1,8 @@
+.container
+  %h1 Update Drill
+  %form.form-inline#edit{:action=>"/task/#{@task.id}", :method=>"post", :role=>"form"}   
+    %input{:type=>"hidden", :name=>"method", :value=>"put"}
+    %div#sketx-canvas{:width=>600}      
+      %img{:src=>"#{@task.name}"}
+  
+  %a.btn.btn-primary{:href=>"#{@task.id}/delete"} Delete this Drill
